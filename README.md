@@ -4,7 +4,7 @@ Zip up your node lambda code and production dependencies without pruning node_mo
 
 # Installation
 
-Install with npm (**coming soon**)
+Install with npm
 
 ```
 npm install lambda-zipper -g
