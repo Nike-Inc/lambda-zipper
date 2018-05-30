@@ -1,5 +1,5 @@
 {
-  "name": "@nike/lambda-zipper",
+  "name": "lambda-zipper",
   "version": "0.2.3",
   "description": "Zip up your node lambda code and production dependencies without pruning node_modules",
   "main": "index.js",
