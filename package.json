@@ -1,0 +1,53 @@
+{
+  "name": "@nike/lambda-zipper",
+  "version": "0.2.2",
+  "description": "Zip up your node lambda code and production dependencies without pruning node_modules",
+  "main": "index.js",
+  "scripts": {
+    "style": "standard \"index.js\" \"src/**/*.js\" | snazzy",
+    "style:fix": "standard \"index.js\" \"src/**/*.js\" --fix",
+    "test": "npm run style && npm run test:coverage",
+    "test:base": "blue-tape test/**/**.spec.js",
+    "test:unit": "npm run test:base | tap-spec",
+    "test:coverage": "nyc --check-coverage --lines 80 npm run test:unit",
+    "report": "nyc report --reporter=html",
+    "test:ci": "npm run style && nyc --check-coverage --lines 80 npm run test:base | tap-xunit > xunit.xml",
+    "report:ci": "npm run report",
+    "report:open": "npm run report && open coverage/index.html",
+    "test:watch": "npm run test:unit -s & ./node_modules/.bin/chokidar 'src/**/*.js' 'test/**/*.spec.js' --polling -c \"./node_modules/.bin/blue-tape test/**/**.spec.js | node_modules/.bin/tap-spec\""
+  },
+  "bin": {
+    "lambda-zipper": "src/cli.js"
+  },
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.nike.com:tkye/lambda-zipper.git"
+  },
+  "author": "Tim Kye",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "blue-tape": "^1.0.0",
+    "chokidar-cli": "^1.2.0",
+    "nyc": "^11.4.1",
+    "opener": "^1.4.3",
+    "proxyquire": "^1.8.0",
+    "snazzy": "^7.0.0",
+    "standard": "^11.0.0",
+    "tap-spec": "^4.1.1",
+    "tap-xunit": "^2.2.0"
+  },
+  "dependencies": {
+    "archiver": "^2.1.1",
+    "bytes": "^3.0.0",
+    "concat-stream": "^1.6.0",
+    "mkdirp": "^0.5.1",
+    "yargs": "^11.0.0"
+  }
+}
