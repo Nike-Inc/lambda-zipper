@@ -44,7 +44,7 @@
     "tap-xunit": "^2.2.0"
   },
   "dependencies": {
-    "archiver": "^2.1.1",
+    "archiver": "^3.0.0",
     "bytes": "^3.0.0",
     "concat-stream": "^1.6.0",
     "mkdirp": "^0.5.1",

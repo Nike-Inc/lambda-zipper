@@ -59,7 +59,7 @@ function archive ({ files, workingDir, outputPath, dependencies }) {
   files.forEach(file => {
     let stat = fs.statSync(path.resolve(workingDir, file))
     if (stat.isDirectory()) {
-      archive.directory(file, '.')
+      archive.directory(file, false)
     } else if (stat.isFile()) {
       archive.file(file, { name: file })
     } else {
