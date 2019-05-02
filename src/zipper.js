@@ -23,14 +23,16 @@ function build ({ files, workingDir, outputPath }) {
 
   let npm = exec('npm ls --prod --parseable', { cwd: workingDir })
   npm.stderr.pipe(process.stderr)
-  npm.stdout.pipe(concat(dependencies => {
-    dependencies = dependencies
-      .split('\n')
-      .slice(1) // skip the first entry, its the root
-      .filter(f => !!f) // remove empty
-      .map(f => path.relative(workingDir, f))
-    archive({ workingDir, outputPath, dependencies, files })
-  }))
+  npm.stdout.pipe(
+    concat(dependencies => {
+      dependencies = dependencies
+        .split('\n')
+        .slice(1) // skip the first entry, its the root
+        .filter(f => !!f) // remove empty
+        .map(f => path.relative(workingDir, f))
+      archive({ workingDir, outputPath, dependencies, files })
+    })
+  )
 }
 
 function archive ({ files, workingDir, outputPath, dependencies }) {
@@ -63,7 +65,9 @@ function archive ({ files, workingDir, outputPath, dependencies }) {
     } else if (stat.isFile()) {
       archive.file(file, { name: file })
     } else {
-      throw new Error('Stat is not a file or directory, unable to append. ' + file)
+      throw new Error(
+        'Stat is not a file or directory, unable to append. ' + file
+      )
     }
   })
 

@@ -9,11 +9,11 @@ require('yargs')
     command: 'build',
     desc: 'package lambda with production dependendies',
     builder: profileOptions,
-    handler: (yargs) => zipper.build({ files: yargs.f, workingDir: yargs.w, outputPath: yargs.o })
+    handler: yargs =>
+      zipper.build({ files: yargs.f, workingDir: yargs.w, outputPath: yargs.o })
   })
   .demandCommand(1, 'Must provide at least one command')
-  .help()
-  .argv
+  .help().argv
 
 function profileOptions (yargs) {
   return yargs
@@ -35,6 +35,15 @@ function profileOptions (yargs) {
       alias: 'working-dir',
       demandOption: false,
       normalize: true,
-      describe: 'path to the root directory of the module. Will set the $CWD before executing command.'
+      describe:
+        'path to the root directory of the module. Will set the $CWD before executing command.'
+    })
+    .option('r', {
+      alias: 'root',
+      demandOption: false,
+      default: false,
+      type: 'boolean',
+      describe:
+        'Include "files" folders in root of archive. If false, folders will be flattened so that contents, but not the folders themselves, are in the root.'
     })
 }

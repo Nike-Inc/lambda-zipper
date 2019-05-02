@@ -1,6 +1,6 @@
 # lambda-zipper
-Zip up your node lambda code and production dependencies without pruning node_modules
 
+Zip up your node lambda code and production dependencies without pruning node_modules
 
 # Installation
 
@@ -31,8 +31,14 @@ Options:
   -o, --output       Name of the zip file to write to        [string] [required]
   -w, --working-dir  path to the root directory of the module. Will set the $CWD
                      before executing command.                          [string]
+  -r, --root         Include "files" folders in root of archive. If false,
+                     folders will be flattened so that contents, but not the
+                     folders themselves, are in the root.
+                                                      [boolean] [default: false]
 ```
+
 **Example**
+
 ```
 lambda-zipper build -f src -o ./build/test.zip
 ```
