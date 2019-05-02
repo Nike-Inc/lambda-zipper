@@ -12,7 +12,7 @@ module.exports = {
   build
 }
 
-function build ({ files, workingDir, outputPath }) {
+function build({ files, workingDir, outputPath, flattenRoot }) {
   if (!files) {
     throw new Error('missing required parameter "files"')
   }
@@ -30,21 +30,21 @@ function build ({ files, workingDir, outputPath }) {
         .slice(1) // skip the first entry, its the root
         .filter(f => !!f) // remove empty
         .map(f => path.relative(workingDir, f))
-      archive({ workingDir, outputPath, dependencies, files })
+      archive({ workingDir, outputPath, dependencies, files, flattenRoot })
     })
   )
 }
 
-function archive ({ files, workingDir, outputPath, dependencies }) {
+function archive({ files, workingDir, outputPath, dependencies, flattenRoot }) {
   mkdirp.sync(path.dirname(path.join(workingDir, outputPath)))
   let output = fs.createWriteStream(path.join(workingDir, outputPath)) //, { flags: 'r+' })
   let archive = archiver('zip', { zlib: { level: 9 } })
 
-  output.on('close', function () {
+  output.on('close', function() {
     console.log(`Archive done, final size ${bytes(archive.pointer())}`)
   })
 
-  archive.on('warning', function (err) {
+  archive.on('warning', function(err) {
     if (err.code === 'ENOENT') {
       console.error('archive error: ' + err.toString())
     } else {
@@ -52,7 +52,7 @@ function archive ({ files, workingDir, outputPath, dependencies }) {
     }
   })
 
-  archive.on('error', function (err) {
+  archive.on('error', function(err) {
     throw err
   })
 
@@ -61,7 +61,7 @@ function archive ({ files, workingDir, outputPath, dependencies }) {
   files.forEach(file => {
     let stat = fs.statSync(path.resolve(workingDir, file))
     if (stat.isDirectory()) {
-      archive.directory(file, false)
+      archive.directory(file, flattenRoot && file)
     } else if (stat.isFile()) {
       archive.file(file, { name: file })
     } else {

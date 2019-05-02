@@ -10,12 +10,17 @@ require('yargs')
     desc: 'package lambda with production dependendies',
     builder: profileOptions,
     handler: yargs =>
-      zipper.build({ files: yargs.f, workingDir: yargs.w, outputPath: yargs.o })
+      zipper.build({
+        files: yargs.f,
+        workingDir: yargs.w,
+        outputPath: yargs.o,
+        flattenRoot: yargs.r
+      })
   })
   .demandCommand(1, 'Must provide at least one command')
   .help().argv
 
-function profileOptions (yargs) {
+function profileOptions(yargs) {
   return yargs
     .option('f', {
       alias: 'files',
