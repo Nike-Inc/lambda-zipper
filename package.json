@@ -1,6 +1,6 @@
 {
   "name": "lambda-zipper",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Zip up your node lambda code and production dependencies without pruning node_modules",
   "main": "index.js",
   "scripts": {
