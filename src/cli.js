@@ -7,7 +7,7 @@ const zipper = require('./zipper')
 require('yargs')
   .command({
     command: 'build',
-    desc: 'package lambda with production dependendies',
+    desc: 'package lambda with production dependencies',
     builder: profileOptions,
     handler: yargs =>
       zipper.build({
@@ -27,7 +27,7 @@ function profileOptions(yargs) {
       demandOption: true,
       normalize: true,
       type: 'array',
-      describe: 'Files/Directories to include in the zip output'
+      describe: 'Files/Directories to include in the zip output (supports globs)'
     })
     .option('o', {
       alias: 'output',

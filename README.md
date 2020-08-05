@@ -21,13 +21,15 @@ lambda-zipper [command] [...options]
 ## Build
 
 ```
-package lambda with production dependendies
+package lambda with production dependencies
 
 Options:
   --version          Show version number                               [boolean]
   --help             Show help                                         [boolean]
   -f, --files        Files/Directories to include in the zip output
                                                               [array] [required]
+  -i, --ignore       Files/Directories to exclude from the the zip output
+                                                                         [array]
   -o, --output       Name of the zip file to write to        [string] [required]
   -w, --working-dir  path to the root directory of the module. Will set the $CWD
                      before executing command.                          [string]

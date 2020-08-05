@@ -59,3 +59,4 @@ typings/
 
 .history/
 build/
+.vscode/
