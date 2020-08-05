@@ -61,21 +61,19 @@ function archive({ files, workingDir, outputPath, dependencies, flattenRoot }) {
 
   const paths = globby.sync(files, { cwd: workingDir, expandDirectories: true })
 
-  console.log('paths', paths)
+  paths.forEach(file => {
+    let stat = fs.statSync(path.resolve(workingDir, file))
+    if (stat.isDirectory()) {
+      archive.directory(file, flattenRoot && file)
+    } else if (stat.isFile()) {
+      archive.file(file, { name: file })
+    } else {
+      throw new Error(
+        'Stat is not a file or directory, unable to append. ' + file
+      )
+    }
+  })
 
-  // paths.forEach(file => {
-  //   let stat = fs.statSync(path.resolve(workingDir, file))
-  //   if (stat.isDirectory()) {
-  //     archive.directory(file, flattenRoot && file)
-  //   } else if (stat.isFile()) {
-  //     archive.file(file, { name: file })
-  //   } else {
-  //     throw new Error(
-  //       'Stat is not a file or directory, unable to append. ' + file
-  //     )
-  //   }
-  // })
-
-  // dependencies.forEach(dep => archive.directory(dep, dep))
-  // archive.finalize()
+  dependencies.forEach(dep => archive.directory(dep, dep))
+  archive.finalize()
 }
