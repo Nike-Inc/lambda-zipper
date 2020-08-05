@@ -14,7 +14,7 @@ require('yargs')
         files: yargs.f,
         workingDir: yargs.w,
         outputPath: yargs.o,
-        flattenRoot: yargs.r
+        keepRoot: yargs.r
       })
   })
   .demandCommand(1, 'Must provide at least one command')
