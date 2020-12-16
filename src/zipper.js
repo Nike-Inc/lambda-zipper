@@ -22,7 +22,7 @@ function build({ files, workingDir, outputPath, keepRoot }) {
   }
   if (!workingDir) workingDir = process.cwd()
 
-  let npm = exec('npm ls --prod --parseable', { cwd: workingDir })
+  let npm = exec('npm ls --prod --parseable --all', { cwd: workingDir })
   npm.stderr.pipe(process.stderr)
   npm.stdout.pipe(
     concat(dependencies => {
