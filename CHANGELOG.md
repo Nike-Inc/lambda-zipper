@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.6.0] - 2020-12-16
+### Added
+`--all` to `npm ls` for npm 7
+
 ## [0.5.0] - 2020-08-05
 ### Added
 support for globby globs in `files`
