@@ -20,7 +20,7 @@ require('yargs')
   .demandCommand(1, 'Must provide at least one command')
   .help().argv
 
-function profileOptions(yargs) {
+function profileOptions (yargs) {
   return yargs
     .option('f', {
       alias: 'files',

@@ -6,7 +6,7 @@
   "scripts": {
     "style": "standard \"index.js\" \"src/**/*.js\" | snazzy",
     "style:fix": "standard \"index.js\" \"src/**/*.js\" --fix",
-    "test": "npm run style && npm run test:coverage",
+    "test": "npm run style && npm run test:unit",
     "test:base": "blue-tape test/**/**.spec.js",
     "test:unit": "npm run test:base | tap-spec",
     "test:coverage": "nyc --check-coverage --lines 80 npm run test:unit",

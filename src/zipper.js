@@ -13,7 +13,7 @@ module.exports = {
   build
 }
 
-function build({ files, workingDir, outputPath, keepRoot }) {
+function build ({ files, workingDir, outputPath, keepRoot }) {
   if (!files) {
     throw new Error('missing required parameter "files"')
   }
@@ -36,7 +36,7 @@ function build({ files, workingDir, outputPath, keepRoot }) {
   )
 }
 
-function archive({ files, workingDir, outputPath, dependencies, keepRoot }) {
+function archive ({ files, workingDir, outputPath, dependencies, keepRoot }) {
   mkdirp.sync(path.dirname(path.join(workingDir, outputPath)))
   let output = fs.createWriteStream(path.join(workingDir, outputPath)) //, { flags: 'r+' })
   let archive = archiver('zip', { zlib: { level: 9 } })
@@ -80,7 +80,7 @@ function archive({ files, workingDir, outputPath, dependencies, keepRoot }) {
   archive.finalize()
 }
 
-function getFlattened(file, files) {
+function getFlattened (file, files) {
   // console.log('check', file, files)
   let match = files.find(f => file.startsWith(f))
   if (!match.endsWith('/')) match += '/'
