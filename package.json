@@ -6,6 +6,7 @@
   "scripts": {
     "style": "standard \"index.js\" \"src/**/*.js\" | snazzy",
     "style:fix": "standard \"index.js\" \"src/**/*.js\" --fix",
+    "build": "node src/cli.js build -f src -o build/lambda.zip",
     "test": "npm run style && npm run test:unit",
     "test:base": "blue-tape test/**/**.spec.js",
     "test:unit": "npm run test:base | tap-spec",
@@ -47,13 +48,19 @@
     "np": "^7.0.0",
     "nyc": "^11.4.1",
     "opener": "^1.4.3",
+    "prettier": "^2.4.1",
     "proxyquire": "^1.8.0",
     "snazzy": "^7.0.0",
-    "standard": "^11.0.0",
     "tap-spec": "^4.1.1",
     "tap-xunit": "^2.2.0"
   },
   "np": {
     "yarn": false
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
   }
 }
