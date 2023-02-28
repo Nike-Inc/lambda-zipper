@@ -46,7 +46,7 @@
     "blue-tape": "^1.0.0",
     "chokidar-cli": "^1.2.0",
     "np": "^7.0.0",
-    "nyc": "^11.4.1",
+    "nyc": "^15.1.0",
     "opener": "^1.4.3",
     "prettier": "^2.4.1",
     "proxyquire": "^1.8.0",
