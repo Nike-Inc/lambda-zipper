@@ -39,7 +39,7 @@
     "concat-stream": "^1.6.0",
     "globby": "^11.0.1",
     "mkdirp": "^0.5.1",
-    "yargs": "^11.0.0"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
